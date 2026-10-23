@@ -31,7 +31,13 @@ def accueil():
 # ---------------------------------------------------------------
 #  Ajoutez vos nouvelles routes ci-dessous 👇
 # ---------------------------------------------------------------
+@app.get("/presentation")
+def presentation():
+    return "Je suis un survivant de la planète 4546B."
 
+@app.get("/loisirs")
+def loisirs():
+    return "Explorer les biomes, construire des bases et éviter les Reapers Levianthan"
 
 
 # ---------------------------------------------------------------

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block titre %}Formulaire{% endblock %}
+{% block contenu %}
+    <h1>Identification du survivant</h1>
+    <form action="/salut" method="get">
+        <label>Votre prénom : <input type="text" name="prenom"></label>
+        <label>Votre ville : <input type="text" name="ville"></label>
+        <label>Couleur de combinaison :
+            <select name="couleur">
+                <option value="tomato">Rouge</option>
+                <option value="teal">Vert</option>
+                <option value="royalblue">Bleu</option>
+            </select>
+        </label>
+        <button type="submit">Envoyer</button>
+    </form>
+{% endblock %}

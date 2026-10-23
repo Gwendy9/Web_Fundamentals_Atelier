@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block titre %}Horloge{% endblock %}
+{% block contenu %}
+    <h1>🕒 Horloge de la base</h1>
+    <p id="heure">Chargement…</p>
+    <p id="message"></p>
+    <script>
+        async function maj() {
+            const reponse = await fetch("/api/heure");
+            const donnees = await reponse.json();
+            document.getElementById("heure").textContent = donnees.date + " – " + donnees.heure;
+            document.getElementById("message").textContent = donnees.message;
+        }
+        maj();
+        setInterval(maj, 1000);
+    </script>
+{% endblock %}

@@ -1,0 +1,23 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 700px;
+    margin: 40px auto;
+    background: linear-gradient(#0a4d68, #021526);
+    background-attachment: fixed;
+    color: #d9f4ff;
+    padding: 0 20px;
+}
+
+h1 {
+    color: #00e5ff;
+    text-shadow: 0 0 10px #00e5ff;
+}
+
+h2 {
+    color: #ffb347;
+}
+
+nav a {
+    margin-right: 15px;
+    color: #7fffd4;
+}

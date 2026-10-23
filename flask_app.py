@@ -1,8 +1,12 @@
-# ---------------------------------------------------------------
-#  Mon premier site Web avec Flask
-# ---------------------------------------------------------------
+from datetime import datetime
 
-from flask import Flask, render_template, request
+from flask import Flask, abort, jsonify, redirect, render_template, request
+
+try:
+    from zoneinfo import ZoneInfo
+    FUSEAU = ZoneInfo("Europe/Paris")
+except Exception:
+    FUSEAU = None
 
 app = Flask(__name__)
 
@@ -60,22 +64,71 @@ def formulaire():
 
 @app.route("/salut", methods=["GET", "POST"])
 def salut():
-    if request.method == "POST":
-        donnees = request.form
-    else:
-        donnees = request.args
+    donnees = request.form if request.method == "POST" else request.args
     prenom = donnees.get("prenom", "inconnu")
     ville = donnees.get("ville", "nulle part")
     couleur = donnees.get("couleur", "")
     if couleur not in COULEURS_AUTORISEES:
         couleur = "#00e5ff"
     return render_template(
-        "salut.html",
-        prenom=prenom,
-        ville=ville,
-        couleur=couleur,
+        "salut.html", prenom=prenom, ville=ville, couleur=couleur,
         methode=request.method,
     )
+
+
+# --- Exercice 9 : codes de statut ---------------------------------
+@app.get("/home")
+def home():
+    return redirect("/")  # 302 : redirection vers l'accueil
+
+
+@app.get("/secret")
+def secret():
+    abort(403)  # accès interdit
+
+
+@app.errorhandler(403)
+def interdit(e):
+    return render_template(
+        "erreur.html", code=403,
+        texte="Zone restreinte : accès refusé, plongeur.",
+    ), 403
+
+
+@app.errorhandler(404)
+def introuvable(e):
+    return render_template(
+        "erreur.html", code=404,
+        texte="Cette zone n'existe pas sur 4546B. Vous êtes perdu en mer.",
+    ), 404
+
+
+# --- Exercice 10 : en-têtes HTTP -----------------------------------
+@app.get("/moi")
+def moi():
+    ip = request.headers.get("X-Forwarded-For", request.remote_addr)
+    return render_template(
+        "moi.html",
+        user_agent=request.headers.get("User-Agent", "inconnu"),
+        langues=request.headers.get("Accept-Language", "inconnu"),
+        ip=ip,
+    )
+
+
+# --- Exercice 11 : API JSON + JavaScript ----------------------------
+@app.get("/api/heure")
+def api_heure():
+    maintenant = datetime.now(FUSEAU) if FUSEAU else datetime.now()
+    return jsonify(
+        heure=maintenant.strftime("%H:%M:%S"),
+        date=maintenant.strftime("%d/%m/%Y"),
+        message="Heure de la base sur 4546B",
+    )
+
+
+@app.get("/horloge")
+def horloge():
+    return render_template("horloge.html")
 
 
 # ---------------------------------------------------------------

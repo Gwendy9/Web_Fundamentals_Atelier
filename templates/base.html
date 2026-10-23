@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>{% block titre %}Subnautica{% endblock %}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <nav>
+        <a href="/">Accueil</a>
+        <a href="/presentation">Présentation</a>
+        <a href="/loisirs">Loisirs</a>
+        <a href="/formulaire">Formulaire</a>
+    </nav>
+    {% block contenu %}{% endblock %}
+</body>
+</html>

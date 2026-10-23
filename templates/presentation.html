@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Présentation</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <nav>
+        <a href="/">Accueil</a>
+        <a href="/presentation">Présentation</a>
+    </nav>
+    <h1>{{ prenom }} {{ nom }}</h1>
+    <p>Survivant de la capsule de sauvetage de l'<strong>Aurora</strong>, en exploration sur 4546B.</p>
+    <h2>Biomes explorés</h2>
+    <ul>
+    {% for loisir in loisirs %}
+        <li>{{ loisir }}</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

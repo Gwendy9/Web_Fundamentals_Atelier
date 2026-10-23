@@ -8,7 +8,7 @@
 #  Les consignes sont dans le dossier "exercices/".
 # ---------------------------------------------------------------
 
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -18,14 +18,7 @@ app = Flask(__name__)
 # Flask exécute la fonction accueil() et renvoie son résultat au navigateur.
 @app.get("/")
 def accueil():
-    return """
-    <p>What is a wave without the ocean?</p>
-    <p>A beginning without an end?<br>
-    They are different, but they go together.<br>
-    Now you go among the stars, and I fall among the sand.</p>
-    <p>We are different.<br>
-    But we go... together.</p>
-    """
+    return render_template("accueil.html")
 
 
 # ---------------------------------------------------------------
@@ -39,9 +32,12 @@ def presentation():
         nom="Robinson",
         loisirs=["Safe Shallows", "Kelp Forest", "Grassy Plateaus", "Lost River"],
     )
+
+
 @app.get("/loisirs")
 def loisirs():
     return "Explorer les biomes, construire des bases et éviter les Reapers."
+
 
 # ---------------------------------------------------------------
 #  Ne pas modifier : utile seulement pour lancer le site

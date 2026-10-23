@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block titre %}Salut{% endblock %}
+{% block contenu %}
+    <h1 style="color: {{ couleur }}">Bonjour {{ prenom }}, qui vient de {{ ville }} !</h1>
+    <p>(reçu en {{ methode }})</p>
+{% endblock %}

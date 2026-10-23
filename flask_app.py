@@ -33,12 +33,15 @@ def accueil():
 # ---------------------------------------------------------------
 @app.get("/presentation")
 def presentation():
-    return "Je suis un survivant de la planète 4546B."
-
+    return render_template(
+        "presentation.html",
+        prenom="Ryley",
+        nom="Robinson",
+        loisirs=["Safe Shallows", "Kelp Forest", "Grassy Plateaus", "Lost River"],
+    )
 @app.get("/loisirs")
 def loisirs():
-    return "Explorer les biomes, construire des bases et éviter les Reapers Levianthan"
-
+    return "Explorer les biomes, construire des bases et éviter les Reapers."
 
 # ---------------------------------------------------------------
 #  Ne pas modifier : utile seulement pour lancer le site

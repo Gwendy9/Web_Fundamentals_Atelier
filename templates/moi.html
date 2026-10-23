@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block titre %}Scanner{% endblock %}
+{% block contenu %}
+    <h1>📡 Ce que le serveur sait de vous</h1>
+    <p>Votre navigateur envoie ces informations à chaque requête :</p>
+    <ul>
+        <li><strong>Navigateur (User-Agent)</strong> : {{ user_agent }}</li>
+        <li><strong>Langues (Accept-Language)</strong> : {{ langues }}</li>
+        <li><strong>Adresse IP</strong> : {{ ip }}</li>
+    </ul>
+{% endblock %}

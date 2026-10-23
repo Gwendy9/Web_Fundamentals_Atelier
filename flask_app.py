@@ -18,7 +18,14 @@ app = Flask(__name__)
 # Flask exécute la fonction accueil() et renvoie son résultat au navigateur.
 @app.get("/")
 def accueil():
-    return " What is a wave without the ocean?  A beginning without an end?"
+    return """
+    <p>What is a wave without the ocean?</p>
+    <p>A beginning without an end?<br>
+    They are different, but they go together.<br>
+    Now you go among the stars, and I fall among the sand.</p>
+    <p>We are different.<br>
+    But we go... together.</p>
+    """
 
 
 # ---------------------------------------------------------------
